@@ -2,12 +2,13 @@ const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser')
 const fs = require('fs')
+var bodyParser = require('body-parser');
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.use(express.json()); // body parser
-app.use(express.urlencoded({ extended: false })); // body parser
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 app.use(cookieParser()); // 쿠키파서
 app.use(express.static('public')); // 정적 파일
 
@@ -22,6 +23,7 @@ app.get('/',(req,res)=>{
     res.render("index")
 })
 app.post('/sendData',(req,res)=>{ // horu : 시간
+    console.log(req.body)
     fs.readFile('public/data.json',(err,data)=>{
         var msg = "OK"
         var status = 200
