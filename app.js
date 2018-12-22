@@ -11,6 +11,10 @@ app.use(express.urlencoded({ extended: false })); // body parser
 app.use(cookieParser()); // 쿠키파서
 app.use(express.static('public')); // 정적 파일
 
+app.use(function (err, req, res, next) {
+    res.status(500).send("ERROR");
+});
+
 app.listen(3000,()=>{
     console.log("Serve OPEN");
 })
