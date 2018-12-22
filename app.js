@@ -29,8 +29,8 @@ app.post('/sendData',(req,res)=>{ // horu : 시간
         var status = 200
         if (data) {
             var jsonData = JSON.parse(data);
-            var hour = req.body.hour
-            if (!hour || isNaN(hour) || hour > 24 || hour < 1){
+            var hour = parseInt(req.body.hour)
+            if (!hour || hour == NaN || hour > 24 || hour < 1){
                 msg = "FAIL"
                 status = 400
             }
