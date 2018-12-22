@@ -27,15 +27,17 @@ app.post('/sendData',(req,res)=>{ // horu : 시간
     fs.readFile('public/data.json',(err,data)=>{
         var msg = "OK"
         var status = 200
+        var succ = true;
         if (data) {
             var jsonData = JSON.parse(data);
             var hour = parseInt(req.body.hour)
             if (!hour || hour == NaN || hour > 24 || hour < 1){
                 msg = "FAIL"
                 status = 400
+                succ = false
             }
             else{
-                var idx = req.body.hour - 1
+                var idx = hour - 1
                 jsonData[idx].data++;
             }
         }
@@ -50,7 +52,10 @@ app.post('/sendData',(req,res)=>{ // horu : 시간
             }
         }
         fs.writeFile('public/data.json', JSON.stringify(jsonData), (err) => {
-            res.status(status).send(msg).end()
+            res.status(status).send({
+                msg: msg,
+                succ : succ
+            }).end()
         })
     })
 })
