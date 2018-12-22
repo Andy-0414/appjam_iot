@@ -21,11 +21,15 @@ app.listen(3000,()=>{
 app.get('/',(req,res)=>{
     res.render("index")
 })
-app.get('/sendData/:hour',(req,res)=>{ // horu : 시간
+app.post('/sendData',(req,res)=>{ // horu : 시간
     fs.readFile('public/data.json',(err,data)=>{
         if (data) {
             var jsonData = JSON.parse(data);
-            jsonData[req.params.hour-1].data++;
+            if(req.body.hour)
+                var idx = req.body.hour-1
+            else
+                res.send("FAIL")
+            jsonData[idx].data++;
         }
         else {
             var jsonData = []
