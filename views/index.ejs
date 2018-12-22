@@ -26,25 +26,25 @@
             <img src="./app2.png" class="app2">
             <img src="./logo.png" id="contentLogo">
             <span id="LogoText">서비스는...</span>
-            <div class="circle" style="left:850px;">
+            <div class="circle" style="left:45%;">
                 <h1>01</h1>
                 <span>사생활 보호를 효율적으로 잘 할 수 있다.</span>
             </div>
-            <div class="circle" style="left:1150px;">
+            <div class="circle" style="left:60%;">
                 <h1>02</h1>
                 <span>불미스러운 상황을 회피할 수 있다.</span>
             </div>
-            <div class="circle" style="left:1450px;">
+            <div class="circle" style="left:75%;">
                 <h1>03</h1>
                 <span>통계 자료를 활용하여 개선방안을 세울 수 있다.</span>
             </div>
             <div id="time">Q. 몇 시에 부모님이 가장 많이 들어왔을까?</div>
-            <button id="download">바로 다운받기</button>
             <div id="chartBox" style="height:1000px; width:100%;">
-                <canvas id="myChart" height="100%" width="0"></canvas>
+                <canvas id="myChart" height="80%" width="0"></canvas>
             </div>
         </div>
     </div>
+            <a href="./app.apk" id="download">바로 다운받기</a>
     <script>
         var d = {}
         axios.get('/getData')

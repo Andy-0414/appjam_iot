@@ -4,10 +4,11 @@
     box-sizing: border-box;
 }
 body{
-    width: 1920px;
+    width: 100%;
     overflow-x:hidden;
     margin: 0;
     height: 3000px;
+
 }
 #background{
     position: relative;
@@ -19,7 +20,8 @@ body{
 
     overflow: hidden;
 
-    z-index: -2;
+    z-index: -1;
+
 }
 .plus{
     position: absolute;
@@ -88,8 +90,6 @@ body{
     top: 0;
     height: 100%;
     width: 100%;
-
-    z-index: 1;
 }
 
 #content{
@@ -104,14 +104,14 @@ body{
     position: absolute;
 
     top: -80px;
-    left: 600px;
+    left: 33%;
 
     width: 500px;
 }
 #LogoText{
     position: absolute;
 
-    left: 1030px;
+    left: calc(33% + 450px);
     top: 130px;
     font-size: 3em;
     font-weight: bold;
@@ -145,12 +145,16 @@ body{
     background-color: #3e4684;
     color: white;
     font-size: 2em;
-    left: 1000px;
-    top: 680px;
+    left: 50%;
+    top: 780px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
     border-radius: 25px;
     padding: 25px 200px;
     outline: none;
     border: none;
+    text-decoration: none;
 }
 #chartBox{
     position: absolute;
