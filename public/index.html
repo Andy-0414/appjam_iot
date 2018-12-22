@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>후방주의</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="background">
+        <img src="./logo.svg" id="logo">
+        <img src="./b1.svg" class="b1">
+        <img src="./b2.svg" class="b2">
+
+        <div class="c">
+            <img src="./app1.png" class="app1">
+            <img src="./app2.png" class="app2">
+            <img src="./logo.png" id="contentLogo">
+            <span id="LogoText">서비스는...</span>
+            <div class="circle" style="left:850px;">
+                <h1>01</h1>
+                <span>몰컴을 더 잘할 수 있다.</span>
+            </div>
+            <div class="circle" style="left:1150px;">
+                <h1>2</h1>
+                <span>불미스러운 상황을 회피할 수 있다.</span>
+            </div>
+            <div class="circle" style="left:1450px;">
+                <h1>03</h1>
+                <span>통계 자료를 활용하여 개선방안을 세울 수 있다.</span>
+            </div>
+            <div id="time">Q. 몇 시에 부모님이 가장 많이 들어왔을까?</div>
+            <button id="download">바로 다운받기</button>
+            <div id="chartBox" style="height:1000px; width:100%;">
+                <canvas id="myChart" height="100%" width="0"></canvas>
+            </div>
+        </div>
+    </div>
+    <script>
+        var d = {}
+        axios.get('/getData')
+                .then(function (data) {
+                    d = {
+                        datasets : [{
+                            data : data.data.map(x=>x.data),
+                            backgroundColor: ['#3e4684','#777faa','#7c92e5','#6aa3ce']
+                        }],
+                        labels: data.data.map(x=>x.label)
+                    }
+                    var ctx = document.getElementById("myChart").getContext('2d');
+                    var myPieChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: d,
+                    });
+                })
+    </script>
+</body>
+
+</html>
